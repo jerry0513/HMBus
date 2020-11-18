@@ -1,6 +1,9 @@
 object Versions {
     const val kotlin = "1.4.10"
     const val material = "1.2.1"
+    const val okhttp = "4.9.0"
+    const val retrofit = "2.9.0"
+    const val moshi = "1.11.0"
 
     object Android {
         const val sdk = 30

@@ -36,14 +36,4 @@ android {
     }
 }
 
-dependencies {
-
-    implementation(Dependencies.Kotlin.stdlib)
-    implementation(Dependencies.AndroidX.coreKTX)
-    implementation(Dependencies.AndroidX.appcompat)
-    implementation(Dependencies.material)
-    implementation(Dependencies.AndroidX.constraintlayout)
-    testImplementation(Dependencies.Test.junit)
-    androidTestImplementation(Dependencies.Test.extJunit)
-    androidTestImplementation(Dependencies.Test.espresso)
-}
+importAppDependencies()
