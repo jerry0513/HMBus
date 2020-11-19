@@ -1,5 +1,7 @@
 object Versions {
     const val kotlin = "1.4.10"
+    const val coroutines = "1.4.1"
+    const val cmake = "3.10.2"
     const val material = "1.2.1"
     const val okhttp = "4.9.0"
     const val retrofit = "2.9.0"

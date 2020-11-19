@@ -13,6 +13,12 @@ object Dependencies {
         const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlin}"
     }
 
+    object Coroutines {
+        const val core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"
+        const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutines}"
+        const val test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutines}"
+    }
+
     object AndroidX {
         const val appcompat = "androidx.appcompat:appcompat:${Versions.AndroidX.appCompat}"
         const val coreKTX = "androidx.core:core-ktx:${Versions.AndroidX.coreKTX}"
@@ -29,14 +35,19 @@ object Dependencies {
     object OkHttp3 {
         const val okhttp = "com.squareup.okhttp3:okhttp:${Versions.okhttp}"
         const val loggingInterceptor = "com.squareup.okhttp3:logging-interceptor:${Versions.okhttp}"
+        const val mockwebserver = "com.squareup.okhttp3:mockwebserver:${Versions.okhttp}"
     }
 
     object Retrofit2 {
         const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
         const val converterMoshi = "com.squareup.retrofit2:converter-moshi:${Versions.retrofit}"
+        const val retrofitMock = "com.squareup.retrofit2:retrofit-mock:${Versions.retrofit}"
     }
 
-    const val moshi = "com.squareup.moshi:moshi:${Versions.moshi}"
+    object Moshi {
+        const val moshi = "com.squareup.moshi:moshi:${Versions.moshi}"
+        const val kotlinCodegen = "com.squareup.moshi:moshi-kotlin-codegen:${Versions.moshi}"
+    }
 }
 
 fun Project.importAppDependencies() {
@@ -61,11 +72,19 @@ fun Project.importAppDependencies() {
         implementation(Dependencies.material)
         implementation(Dependencies.AndroidX.constraintlayout)
 
+        implementation(Dependencies.Coroutines.android)
+        testImplementation(Dependencies.Coroutines.test)
+
         implementation(Dependencies.OkHttp3.okhttp)
         implementation(Dependencies.OkHttp3.loggingInterceptor)
+        testImplementation(Dependencies.OkHttp3.mockwebserver)
+
         implementation(Dependencies.Retrofit2.retrofit)
         implementation(Dependencies.Retrofit2.converterMoshi)
-        implementation(Dependencies.moshi)
+        testImplementation(Dependencies.Retrofit2.retrofitMock)
+
+        implementation(Dependencies.Moshi.moshi)
+        kapt(Dependencies.Moshi.kotlinCodegen)
 
         testImplementation(Dependencies.Test.junit)
         androidTestImplementation(Dependencies.Test.extJunit)
