@@ -48,6 +48,13 @@ object Dependencies {
         const val moshi = "com.squareup.moshi:moshi:${Versions.moshi}"
         const val kotlinCodegen = "com.squareup.moshi:moshi-kotlin-codegen:${Versions.moshi}"
     }
+
+    object Dagger {
+        const val hiltAndroidGradlePlugin = "com.google.dagger:hilt-android-gradle-plugin:${Versions.dagger}"
+        const val hiltAndroid = "com.google.dagger:hilt-android:${Versions.dagger}"
+        const val hiltAndroidTest = "com.google.dagger:hilt-android-testing:${Versions.dagger}"
+        const val hiltAndroidCompiler = "com.google.dagger:hilt-android-compiler:${Versions.dagger}"
+    }
 }
 
 fun Project.importAppDependencies() {
@@ -85,6 +92,10 @@ fun Project.importAppDependencies() {
 
         implementation(Dependencies.Moshi.moshi)
         kapt(Dependencies.Moshi.kotlinCodegen)
+
+        implementation(Dependencies.Dagger.hiltAndroid)
+        implementation(Dependencies.Dagger.hiltAndroidTest)
+        kapt(Dependencies.Dagger.hiltAndroidCompiler)
 
         testImplementation(Dependencies.Test.junit)
         androidTestImplementation(Dependencies.Test.extJunit)

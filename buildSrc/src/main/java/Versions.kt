@@ -6,6 +6,7 @@ object Versions {
     const val okhttp = "4.9.0"
     const val retrofit = "2.9.0"
     const val moshi = "1.11.0"
+    const val dagger = "2.29.1-alpha"
 
     object Android {
         const val sdk = 30
