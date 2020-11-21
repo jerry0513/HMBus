@@ -7,6 +7,7 @@ buildscript {
     dependencies {
         classpath(Dependencies.androidGradlePlugin)
         classpath(Dependencies.Kotlin.gradlePlugin)
+        classpath(Dependencies.AndroidX.Navigation.safeArgsGradlePlugin)
         classpath(Dependencies.Dagger.hiltAndroidGradlePlugin)
 
         // NOTE: Do not place your application dependencies here; they belong

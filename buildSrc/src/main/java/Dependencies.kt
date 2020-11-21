@@ -24,6 +24,11 @@ object Dependencies {
         const val coreKTX = "androidx.core:core-ktx:${Versions.AndroidX.coreKTX}"
         const val constraintlayout =
             "androidx.constraintlayout:constraintlayout:${Versions.AndroidX.constraintLayout}"
+        object Navigation {
+            const val fragment = "androidx.navigation:navigation-fragment-ktx:${Versions.AndroidX.navigation}"
+            const val ui = "androidx.navigation:navigation-ui-ktx:${Versions.AndroidX.navigation}"
+            const val safeArgsGradlePlugin = "androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.AndroidX.navigation}"
+        }
     }
 
     object Test {
@@ -78,23 +83,22 @@ fun Project.importAppDependencies() {
         implementation(Dependencies.AndroidX.appcompat)
         implementation(Dependencies.material)
         implementation(Dependencies.AndroidX.constraintlayout)
+        implementation(Dependencies.AndroidX.Navigation.fragment)
+        implementation(Dependencies.AndroidX.Navigation.ui)
 
         implementation(Dependencies.Coroutines.android)
         testImplementation(Dependencies.Coroutines.test)
 
         implementation(Dependencies.OkHttp3.okhttp)
         implementation(Dependencies.OkHttp3.loggingInterceptor)
-        testImplementation(Dependencies.OkHttp3.mockwebserver)
 
         implementation(Dependencies.Retrofit2.retrofit)
         implementation(Dependencies.Retrofit2.converterMoshi)
-        testImplementation(Dependencies.Retrofit2.retrofitMock)
 
         implementation(Dependencies.Moshi.moshi)
         kapt(Dependencies.Moshi.kotlinCodegen)
 
         implementation(Dependencies.Dagger.hiltAndroid)
-        implementation(Dependencies.Dagger.hiltAndroidTest)
         kapt(Dependencies.Dagger.hiltAndroidCompiler)
 
         testImplementation(Dependencies.Test.junit)
