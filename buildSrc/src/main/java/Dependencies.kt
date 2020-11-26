@@ -29,6 +29,10 @@ object Dependencies {
             const val ui = "androidx.navigation:navigation-ui-ktx:${Versions.AndroidX.navigation}"
             const val safeArgsGradlePlugin = "androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.AndroidX.navigation}"
         }
+        object Hilt {
+            const val lifecycleViewmodel = "androidx.hilt:hilt-lifecycle-viewmodel:${Versions.AndroidX.hilt}"
+            const val compiler = "androidx.hilt:hilt-compiler:${Versions.AndroidX.hilt}"
+        }
     }
 
     object Test {
@@ -85,6 +89,8 @@ fun Project.importAppDependencies() {
         implementation(Dependencies.AndroidX.constraintlayout)
         implementation(Dependencies.AndroidX.Navigation.fragment)
         implementation(Dependencies.AndroidX.Navigation.ui)
+        implementation(Dependencies.AndroidX.Hilt.lifecycleViewmodel)
+        kapt(Dependencies.AndroidX.Hilt.compiler)
 
         implementation(Dependencies.Coroutines.android)
         testImplementation(Dependencies.Coroutines.test)

@@ -3,23 +3,32 @@ package tw.com.hmbus.dagger
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ApplicationComponent
+import dagger.hilt.components.SingletonComponent
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
-import tw.com.hmbus.SignatureFactory
-import tw.com.hmbus.data.remote.PtxApi
+import tw.com.hmbus.AuthFactory
+import tw.com.hmbus.data.remote.PtxService
+import javax.inject.Qualifier
 import javax.inject.Singleton
 
 @Module
-@InstallIn(ApplicationComponent::class)
+@InstallIn(SingletonComponent::class)
 object RemoteDataModule {
 
+    @LoggingInterceptor
     @Provides
+    @Singleton
+    fun provideLoggingInterceptor(): Interceptor =
+        HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
+
+    @RequestInterceptor
+    @Provides
+    @Singleton
     fun provideRequestInterceptor(): Interceptor = Interceptor { chain ->
-        val signature = SignatureFactory.generatePtxSignature()
+        val signature = AuthFactory.createPtxAuth()
         val request = chain.request()
 
         val urlBuilder = request.url.newBuilder()
@@ -35,19 +44,33 @@ object RemoteDataModule {
 
     @Provides
     @Singleton
-    fun provideOkHttp(requestInterceptor: Interceptor): OkHttpClient =
+    fun provideOkHttp(
+        @LoggingInterceptor loggingInterceptor: Interceptor,
+        @RequestInterceptor requestInterceptor: Interceptor
+    ): OkHttpClient =
         OkHttpClient().newBuilder()
-            .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+            .addInterceptor(loggingInterceptor)
             .addInterceptor(requestInterceptor)
             .build()
 
     @Provides
     @Singleton
-    fun provideRetrofit(okHttpClient: OkHttpClient): PtxApi =
+    fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit =
         Retrofit.Builder()
             .baseUrl("https://ptx.transportdata.tw/MOTC/")
             .client(okHttpClient)
             .addConverterFactory(MoshiConverterFactory.create())
             .build()
-            .create(PtxApi::class.java)
+
+    @Provides
+    @Singleton
+    fun providePtxService(retrofit: Retrofit): PtxService = retrofit.create(PtxService::class.java)
 }
+
+@Qualifier
+@Retention(AnnotationRetention.BINARY)
+annotation class LoggingInterceptor
+
+@Qualifier
+@Retention(AnnotationRetention.BINARY)
+annotation class RequestInterceptor

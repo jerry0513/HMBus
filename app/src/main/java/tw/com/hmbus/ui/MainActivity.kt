@@ -1,8 +1,9 @@
-package tw.com.hmbus
+package tw.com.hmbus.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import dagger.hilt.android.AndroidEntryPoint
+import tw.com.hmbus.R
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
