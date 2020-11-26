@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
@@ -29,6 +30,7 @@ class HomeFragment : Fragment() {
         with(binding.busRouteList) {
             layoutManager = LinearLayoutManager(context)
             adapter = BusRouteAdapter()
+            addItemDecoration(BusRouteItemDecoration())
         }
 
         homeViewModel.busRouteResult.observe(viewLifecycleOwner, { result ->
@@ -38,7 +40,10 @@ class HomeFragment : Fragment() {
                     binding.progressBar.visibility = View.GONE
                     (binding.busRouteList.adapter as BusRouteAdapter).data = result.data
                 }
-                is Result.Error -> binding.progressBar.visibility = View.GONE
+                is Result.Error -> {
+                    binding.progressBar.visibility = View.GONE
+                    Toast.makeText(context, result.throwable.message, Toast.LENGTH_SHORT).show()
+                }
             }
         })
 
