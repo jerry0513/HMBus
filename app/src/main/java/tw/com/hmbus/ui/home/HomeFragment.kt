@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Job
@@ -40,7 +41,12 @@ class HomeFragment : Fragment() {
 
         with(binding.busRouteList) {
             layoutManager = LinearLayoutManager(context)
-            adapter = BusRouteAdapter()
+            adapter = BusRouteAdapter().apply {
+                onItemClickListener = { busRoute ->
+                    val action = HomeFragmentDirections.toRealTimeFragment(busRoute.RouteName.Zh_tw)
+                    findNavController().navigate(action)
+                }
+            }
             addItemDecoration(BusRouteItemDecoration())
         }
 

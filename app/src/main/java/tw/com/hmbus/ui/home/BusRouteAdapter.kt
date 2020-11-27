@@ -20,11 +20,13 @@ class BusRouteAdapter : RecyclerView.Adapter<BusRouteViewHolder>() {
             notifyDataSetChanged()
         }
 
+    var onItemClickListener: (BusRoute) -> Unit = {}
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BusRouteViewHolder =
         BusRouteViewHolder.create(parent)
 
     override fun onBindViewHolder(holder: BusRouteViewHolder, position: Int) =
-        holder.bind(data[position])
+        holder.bind(data[position], onItemClickListener)
 
     override fun getItemCount(): Int = data.size
 }
@@ -32,9 +34,12 @@ class BusRouteAdapter : RecyclerView.Adapter<BusRouteViewHolder>() {
 class BusRouteViewHolder(private val binding: BusRouteItemBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(item: BusRoute) {
+    fun bind(item: BusRoute, onItemClickListener: (BusRoute) -> Unit) {
         binding.route.text = item.RouteName.Zh_tw
         binding.depDesStopName.text = "${item.DepartureStopNameZh} - ${item.DestinationStopNameZh}"
+        itemView.setOnClickListener {
+            onItemClickListener.invoke(item)
+        }
     }
 
     companion object {

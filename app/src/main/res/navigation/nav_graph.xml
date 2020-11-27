@@ -9,5 +9,18 @@
         android:id="@+id/homeFragment"
         android:name="tw.com.hmbus.ui.home.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/toRealTimeFragment"
+            app:destination="@id/realTimeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/realTimeFragment"
+        android:name="tw.com.hmbus.ui.realTime.RealTimeFragment"
+        android:label="fragment_real_time"
+        tools:layout="@layout/fragment_real_time" >
+        <argument
+            android:name="routeName"
+            app:argType="string"/>
+    </fragment>
 </navigation>
