@@ -8,20 +8,14 @@
     <EditText
         android:id="@+id/searchEt"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <Button
-        android:id="@+id/searchBtn"
-        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/searchEt"
-        android:text="search"/>
+        android:hint="Search Bus Route"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/busRouteList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/searchBtn"
+        android:layout_below="@id/searchEt"
         tools:listitem="@layout/bus_route_item"/>
 
     <ProgressBar

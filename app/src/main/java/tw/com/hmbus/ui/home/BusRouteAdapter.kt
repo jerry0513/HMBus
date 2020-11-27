@@ -68,8 +68,6 @@ class BusRouteItemDecoration : RecyclerView.ItemDecoration() {
 
         if (parent.getChildAdapterPosition(view) == 0)
             outRect.top = OFFSET_TOP
-        outRect.left = OFFSET_LEFT
-        outRect.right = OFFSET_RIGHT
         outRect.bottom = OFFSET_BOTTOM
     }
 

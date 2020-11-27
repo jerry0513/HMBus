@@ -6,9 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import tw.com.hmbus.data.Result
 import tw.com.hmbus.databinding.FragmentHomeBinding
 
@@ -17,14 +22,20 @@ class HomeFragment : Fragment() {
 
     private val homeViewModel: HomeViewModel by viewModels()
 
+    private var searchJob: Job? = null
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         val binding = FragmentHomeBinding.inflate(inflater, container, false)
 
-        binding.searchBtn.setOnClickListener {
-            homeViewModel.searchBusRoute(binding.searchEt.text.toString())
+        binding.searchEt.addTextChangedListener {
+            searchJob?.cancel()
+            searchJob = lifecycleScope.launch {
+                delay(1000)
+                homeViewModel.searchBusRoute(binding.searchEt.text.toString())
+            }
         }
 
         with(binding.busRouteList) {
