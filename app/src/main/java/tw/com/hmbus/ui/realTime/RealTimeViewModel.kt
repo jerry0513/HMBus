@@ -9,20 +9,20 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import tw.com.hmbus.data.PtxRepository
-import tw.com.hmbus.data.Result
 import tw.com.hmbus.data.remote.BusN1EstimateTime
+import tw.com.hmbus.data.vo.Result
+import tw.com.hmbus.domain.GetEstimatedTimeOfStopUseCase
 
 class RealTimeViewModel @ViewModelInject constructor(
     @Assisted private val savedStateHandle: SavedStateHandle,
-    private val ptxRepository: PtxRepository
+    private val getEstimatedTimeOfStopUseCase: GetEstimatedTimeOfStopUseCase
 ) : ViewModel() {
 
-    val estimatedTimeOfArrivalResult = MutableLiveData<Result<List<BusN1EstimateTime>>>()
+    val estimatedTimeOfArrivalResult = MutableLiveData<Result<Map<Int, List<BusN1EstimateTime>>>>()
 
-    fun getEstimatedTimeOfArrival(routeName: String) = viewModelScope.launch {
+    fun getEstimatedTimeOfArrival(city: String, routeName: String) = viewModelScope.launch {
         estimatedTimeOfArrivalResult.postValue(Result.Loading)
-        ptxRepository.getEstimatedTimeOfArrival("Taipei", routeName)
+        getEstimatedTimeOfStopUseCase(city, routeName)
             .catch { t ->
                 estimatedTimeOfArrivalResult.postValue(Result.Error(t))
             }

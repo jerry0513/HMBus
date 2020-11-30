@@ -15,7 +15,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import tw.com.hmbus.data.Result
+import tw.com.hmbus.data.vo.Result
 import tw.com.hmbus.databinding.FragmentHomeBinding
 
 @AndroidEntryPoint

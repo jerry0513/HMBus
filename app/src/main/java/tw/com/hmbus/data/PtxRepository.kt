@@ -10,13 +10,17 @@ import javax.inject.Inject
 class PtxRepository @Inject constructor(
     @IoDispatcher private val ioDispatcher: CoroutineDispatcher,
     private val ptxService: PtxService
-) : BaseRepository() {
+) : Repository() {
 
-    suspend fun getEstimatedTimeOfArrival(city: String, routeName: String) = flow {
-        emit(ptxService.getEstimatedTimeOfArrival(city, routeName))
+    suspend fun getEstimatedTimeOfArrival(city: String, routeName: String, filter: String?) = flow {
+        emit(ptxService.getEstimatedTimeOfArrival(city, routeName, filter))
     }.flowOn(ioDispatcher)
 
     suspend fun getBusRoute(city: String, routeName: String) = flow {
         emit(ptxService.getRoute(city, routeName))
+    }.flowOn(ioDispatcher)
+
+    suspend fun getStopOfRoute(city: String, routeName: String, filter: String?) = flow {
+        emit(ptxService.getStopOfRoute(city, routeName, filter))
     }.flowOn(ioDispatcher)
 }

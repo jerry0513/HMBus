@@ -11,7 +11,7 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
-import tw.com.hmbus.data.Result
+import tw.com.hmbus.data.vo.Result
 import tw.com.hmbus.databinding.FragmentRealTimeBinding
 
 @AndroidEntryPoint
@@ -39,7 +39,7 @@ class RealTimeFragment : Fragment() {
                 is Result.Loading -> binding.progressBar.visibility = View.VISIBLE
                 is Result.Success -> {
                     binding.progressBar.visibility = View.GONE
-                    (binding.estimatedTimeList.adapter as EstimatedTimeAdapter).data = result.data
+                    (binding.estimatedTimeList.adapter as EstimatedTimeAdapter).data = result.data.values.first()
                 }
                 is Result.Error -> {
                     binding.progressBar.visibility = View.GONE
@@ -48,7 +48,7 @@ class RealTimeFragment : Fragment() {
             }
         })
 
-        realTimeViewModel.getEstimatedTimeOfArrival(args.routeName)
+        realTimeViewModel.getEstimatedTimeOfArrival("Taipei", args.routeName)
 
         return binding.root
     }

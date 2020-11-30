@@ -1,4 +1,4 @@
-package tw.com.hmbus.data
+package tw.com.hmbus.data.vo
 
 sealed class Result<out T> {
     object Loading : Result<Nothing>()

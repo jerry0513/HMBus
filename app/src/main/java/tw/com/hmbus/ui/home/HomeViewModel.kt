@@ -9,7 +9,7 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import tw.com.hmbus.data.PtxRepository
-import tw.com.hmbus.data.Result
+import tw.com.hmbus.data.vo.Result
 import tw.com.hmbus.data.remote.BusRoute
 
 class HomeViewModel @ViewModelInject constructor(
