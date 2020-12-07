@@ -12,11 +12,17 @@
         style="@style/TextAppearance.MaterialComponents.Headline3"
         tools:text="299"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/estimatedTimeList"
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/directionTab"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/routeName"/>
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/estimatedTimeViewPager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/routeName"/>
+        android:layout_below="@id/directionTab"/>
 
     <ProgressBar
         android:id="@+id/progressBar"

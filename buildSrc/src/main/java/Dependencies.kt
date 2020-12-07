@@ -24,6 +24,7 @@ object Dependencies {
         const val coreKTX = "androidx.core:core-ktx:${Versions.AndroidX.coreKTX}"
         const val constraintlayout =
             "androidx.constraintlayout:constraintlayout:${Versions.AndroidX.constraintLayout}"
+        const val viewpager2 = "androidx.viewpager2:viewpager2:${Versions.AndroidX.viewpager2}"
         object Navigation {
             const val fragment = "androidx.navigation:navigation-fragment-ktx:${Versions.AndroidX.navigation}"
             const val ui = "androidx.navigation:navigation-ui-ktx:${Versions.AndroidX.navigation}"
@@ -87,6 +88,7 @@ fun Project.importAppDependencies() {
         implementation(Dependencies.AndroidX.appcompat)
         implementation(Dependencies.material)
         implementation(Dependencies.AndroidX.constraintlayout)
+        implementation(Dependencies.AndroidX.viewpager2)
         implementation(Dependencies.AndroidX.Navigation.fragment)
         implementation(Dependencies.AndroidX.Navigation.ui)
         implementation(Dependencies.AndroidX.Hilt.lifecycleViewmodel)

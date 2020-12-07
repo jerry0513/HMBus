@@ -23,6 +23,7 @@ object Versions {
         const val appCompat = "1.2.0"
         const val coreKTX = "1.3.2"
         const val constraintLayout = "2.0.4"
+        const val viewpager2 = "1.0.0"
         const val navigation = "2.3.1"
         const val hilt = "1.0.0-alpha02"
     }
