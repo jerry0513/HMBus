@@ -42,7 +42,7 @@ class RealTimeFragment : Fragment() {
                         viewLifecycleOwner.lifecycle
                     )
                     TabLayoutMediator(binding.directionTab, binding.estimatedTimeViewPager) { tab, position ->
-                        tab.text = result.data.values.toList()[position].last().StopName.Zh_tw
+                        tab.text = "往${result.data.values.toList()[position].last().StopName.Zh_tw}"
                     }.attach()
                 }
                 is Result.Error -> {

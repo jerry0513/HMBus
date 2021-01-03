@@ -9,6 +9,8 @@
         android:id="@+id/searchEt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/default_app_horizontal_gap"
+        android:layout_marginVertical="@dimen/default_app_vertical_gap"
         android:hint="Search Bus Route"/>
 
     <androidx.recyclerview.widget.RecyclerView

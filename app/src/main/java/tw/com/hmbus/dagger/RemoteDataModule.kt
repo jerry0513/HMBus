@@ -49,6 +49,9 @@ object RemoteDataModule {
         @RequestInterceptor requestInterceptor: Interceptor
     ): OkHttpClient =
         OkHttpClient().newBuilder()
+            .authenticator { route, response ->
+                response.request
+            }
             .addInterceptor(loggingInterceptor)
             .addInterceptor(requestInterceptor)
             .build()

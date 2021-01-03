@@ -9,6 +9,7 @@
         android:id="@+id/routeName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/default_app_horizontal_gap"
         style="@style/TextAppearance.MaterialComponents.Headline3"
         tools:text="299"/>
 

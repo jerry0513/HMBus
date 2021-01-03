@@ -2,21 +2,23 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:paddingHorizontal="@dimen/default_app_horizontal_gap"
+    android:paddingVertical="@dimen/default_app_vertical_gap">
 
     <TextView
         android:id="@+id/estimatedTime"
         style="@style/TextAppearance.MaterialComponents.Subtitle1"
-        android:layout_width="wrap_content"
+        android:layout_width="60dp"
         android:layout_height="wrap_content"
-        tools:text="3min" />
+        tools:text="30min" />
 
     <TextView
         android:id="@+id/stopName"
         style="@style/TextAppearance.MaterialComponents.Subtitle1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="@dimen/default_app_horizontal_gap"
         tools:text="中華路口" />
 
 </LinearLayout>

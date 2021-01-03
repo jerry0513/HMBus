@@ -26,7 +26,6 @@ class EstimatedTimeFragment : Fragment() {
         with(binding.estimatedTimeList) {
             layoutManager = LinearLayoutManager(context)
             adapter = estimatedTimeAdapter
-            addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
         }
 
         realTimeViewModel.estimatedTimeOfArrivalResult.observe(viewLifecycleOwner, { result ->

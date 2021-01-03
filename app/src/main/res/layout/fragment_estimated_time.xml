@@ -9,6 +9,6 @@
         android:id="@+id/estimatedTimeList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/routeName" />
+        tools:listitem="@layout/estimated_time_item"/>
 
 </FrameLayout>
