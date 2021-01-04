@@ -13,6 +13,9 @@
         <action
             android:id="@+id/toRealTimeFragment"
             app:destination="@id/realTimeFragment" />
+        <action
+            android:id="@+id/toSearchRouteFragment"
+            app:destination="@id/searchRouteFragment" />
     </fragment>
     <fragment
         android:id="@+id/realTimeFragment"
@@ -22,5 +25,14 @@
         <argument
             android:name="routeName"
             app:argType="string"/>
+    </fragment>
+    <fragment
+        android:id="@+id/searchRouteFragment"
+        android:name="tw.com.hmbus.ui.searchRoute.SearchRouteFragment"
+        android:label="fragment_search_route"
+        tools:layout="@layout/fragment_search_route" >
+        <action
+            android:id="@+id/toRealTimeFragment"
+            app:destination="@id/realTimeFragment" />
     </fragment>
 </navigation>

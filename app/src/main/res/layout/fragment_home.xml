@@ -5,20 +5,14 @@
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment">
 
-    <EditText
-        android:id="@+id/searchEt"
-        android:layout_width="match_parent"
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/searchFab"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/default_app_horizontal_gap"
-        android:layout_marginVertical="@dimen/default_app_vertical_gap"
-        android:hint="Search Bus Route"/>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/busRouteList"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/searchEt"
-        tools:listitem="@layout/bus_route_item"/>
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="16dp"
+        android:src="@android:drawable/ic_menu_search"/>
 
     <ProgressBar
         android:id="@+id/progressBar"
