@@ -26,11 +26,14 @@ object Versions {
         const val viewpager2 = "1.0.0"
         const val navigation = "2.3.1"
         const val hilt = "1.0.0-alpha02"
+        const val fragmentTest = "1.2.5"
     }
 
     object Test {
         const val junit = "4.13.1"
         const val extJunit = "1.1.2"
         const val espresso = "3.3.0"
+        const val runner = "1.3.0"
+        const val rules = "1.3.0"
     }
 }

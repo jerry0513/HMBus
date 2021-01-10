@@ -9,9 +9,10 @@
     <TextView
         android:id="@+id/estimatedTime"
         style="@style/TextAppearance.MaterialComponents.Subtitle1"
-        android:layout_width="60dp"
+        android:layout_width="90dp"
         android:layout_height="wrap_content"
-        tools:text="30min" />
+        android:gravity="center"
+        tools:text="30分" />
 
     <TextView
         android:id="@+id/stopName"

@@ -42,7 +42,8 @@ class RealTimeFragment : Fragment() {
                         viewLifecycleOwner.lifecycle
                     )
                     TabLayoutMediator(binding.directionTab, binding.estimatedTimeViewPager) { tab, position ->
-                        tab.text = "往${result.data.values.toList()[position].last().StopName.Zh_tw}"
+                        val directionStops = result.data.values.toList()
+                        tab.text = "往${directionStops[position].last().StopName.Zh_tw}"
                     }.attach()
                 }
                 is Result.Error -> {

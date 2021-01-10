@@ -7,6 +7,7 @@ object Dependencies {
     const val androidGradlePlugin = "com.android.tools.build:gradle:4.1.1"
 
     const val material = "com.google.android.material:material:${Versions.material}"
+    const val klock = "com.soywiz.korlibs.klock:klock-android:2.0.3"
 
     object Kotlin {
         const val gradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
@@ -14,7 +15,6 @@ object Dependencies {
     }
 
     object Coroutines {
-        const val core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"
         const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutines}"
         const val test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutines}"
     }
@@ -40,6 +40,8 @@ object Dependencies {
         const val junit = "junit:junit:${Versions.Test.junit}"
         const val extJunit = "androidx.test.ext:junit:${Versions.Test.extJunit}"
         const val espresso = "androidx.test.espresso:espresso-core:${Versions.Test.espresso}"
+        const val runner = "androidx.test:runner:${Versions.Test.runner}"
+        const val rules = "androidx.test:rules:${Versions.Test.rules}"
     }
 
     object OkHttp3 {
@@ -109,8 +111,12 @@ fun Project.importAppDependencies() {
         implementation(Dependencies.Dagger.hiltAndroid)
         kapt(Dependencies.Dagger.hiltAndroidCompiler)
 
+        implementation(Dependencies.klock)
+
         testImplementation(Dependencies.Test.junit)
         androidTestImplementation(Dependencies.Test.extJunit)
         androidTestImplementation(Dependencies.Test.espresso)
+        androidTestImplementation(Dependencies.Test.runner)
+        androidTestImplementation(Dependencies.Test.rules)
     }
 }

@@ -3,6 +3,7 @@ package tw.com.hmbus.ui.realTime
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.soywiz.klock.*
 import tw.com.hmbus.data.remote.BusN1EstimateTime
 import tw.com.hmbus.databinding.EstimatedTimeItemBinding
 
@@ -27,8 +28,26 @@ class EstimatedTimeViewHolder(private val binding: EstimatedTimeItemBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
     fun bind(item: BusN1EstimateTime) {
-        val estimateTime = Math.ceil(item.EstimateTime / 60.0).toInt()
-        binding.estimatedTime.text = "$estimateTime min"
+        binding.estimatedTime.text = if (item.EstimateTime == null) {
+            when(item.StopStatus) {
+                1 -> "尚未發車"
+                2 -> "交管不停靠"
+                3 -> "末班車已過"
+                4 -> "今日不營運"
+                else -> throw IllegalStateException("unknown stop status")
+            }
+        } else {
+            val remainingMinute = Math.ceil(item.EstimateTime / 60.0).toInt()
+            when {
+                remainingMinute >= 60 -> {
+                    val now = DateTime.now().utc.addOffset(8.hours)
+                    val estimatedTime = now + remainingMinute.minutes
+                    estimatedTime.format("hh:mm")
+                }
+                remainingMinute <= 2 -> "即將到站"
+                else -> "${remainingMinute}分"
+            }
+        }
         binding.stopName.text = item.StopName.Zh_tw
     }
 
