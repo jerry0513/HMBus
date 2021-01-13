@@ -18,7 +18,7 @@ import kotlinx.coroutines.launch
 import tw.com.hmbus.data.vo.Result
 import tw.com.hmbus.databinding.FragmentSearchRouteBinding
 import tw.com.hmbus.ui.home.BusRouteAdapter
-import tw.com.hmbus.ui.home.BusRouteItemDecoration
+import tw.com.hmbus.widget.DividerItemDecoration
 
 @AndroidEntryPoint
 class SearchRouteFragment : Fragment() {
@@ -49,7 +49,7 @@ class SearchRouteFragment : Fragment() {
                     findNavController().navigate(action)
                 }
             }
-            addItemDecoration(BusRouteItemDecoration())
+            addItemDecoration(DividerItemDecoration())
         }
 
         searchViewModel.busRouteResult.observe(viewLifecycleOwner, { result ->

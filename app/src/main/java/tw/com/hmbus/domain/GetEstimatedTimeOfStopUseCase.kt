@@ -30,11 +30,12 @@ class GetEstimatedTimeOfStopUseCase @Inject constructor(
             val routeMap = hashMapOf<Int, List<BusN1EstimateTime>>()
             for (route in routes) {
                 routeMap[route.Direction] = route.Stops.map { stop ->
+                    val arrival = arrivals.first { it.StopUID == stop.StopUID }
                     BusN1EstimateTime(
                         StopUID = stop.StopUID,
                         StopName = stop.StopName,
-                        EstimateTime = arrivals.first { it.StopUID == stop.StopUID }.EstimateTime,
-                        StopStatus = arrivals.first { it.StopUID == stop.StopUID }.StopStatus
+                        EstimateTime = arrival.EstimateTime,
+                        StopStatus = arrival.StopStatus
                     )
                 }
             }
