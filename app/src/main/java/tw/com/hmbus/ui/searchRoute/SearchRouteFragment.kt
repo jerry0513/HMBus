@@ -11,7 +11,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import tw.com.hmbus.R
 import tw.com.hmbus.data.vo.Result
@@ -33,8 +32,7 @@ class SearchRouteFragment : Fragment(R.layout.fragment_search_route) {
 
         binding.searchEt.addTextChangedListener {
             searchJob?.cancel()
-            searchJob = lifecycleScope.launch {
-                delay(1000)
+            searchJob = viewLifecycleOwner.lifecycleScope.launch {
                 searchViewModel.searchBusRoute(binding.searchEt.text.toString())
             }
         }
