@@ -2,9 +2,7 @@ package tw.com.hmbus.ui.searchRoute
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
@@ -15,23 +13,23 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import tw.com.hmbus.R
 import tw.com.hmbus.data.vo.Result
 import tw.com.hmbus.databinding.FragmentSearchRouteBinding
 import tw.com.hmbus.ui.home.BusRouteAdapter
+import tw.com.hmbus.utility.viewBinding
 import tw.com.hmbus.widget.DividerItemDecoration
 
 @AndroidEntryPoint
-class SearchRouteFragment : Fragment() {
+class SearchRouteFragment : Fragment(R.layout.fragment_search_route) {
 
+    private val binding: FragmentSearchRouteBinding by viewBinding()
     private val searchViewModel: SearchViewModel by viewModels()
 
     private var searchJob: Job? = null
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        val binding = FragmentSearchRouteBinding.inflate(inflater, container, false)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         binding.searchEt.addTextChangedListener {
             searchJob?.cancel()
@@ -65,7 +63,5 @@ class SearchRouteFragment : Fragment() {
                 }
             }
         })
-
-        return binding.root
     }
 }

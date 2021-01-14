@@ -1,9 +1,7 @@
 package tw.com.hmbus.ui.realTime
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
@@ -14,20 +12,20 @@ import androidx.navigation.fragment.navArgs
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
+import tw.com.hmbus.R
 import tw.com.hmbus.data.vo.Result
 import tw.com.hmbus.databinding.FragmentRealTimeBinding
+import tw.com.hmbus.utility.viewBinding
 
 @AndroidEntryPoint
-class RealTimeFragment : Fragment() {
+class RealTimeFragment : Fragment(R.layout.fragment_real_time) {
 
     private val args: RealTimeFragmentArgs by navArgs()
+    private val binding: FragmentRealTimeBinding by viewBinding()
     private val realTimeViewModel: RealTimeViewModel by viewModels()
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        val binding = FragmentRealTimeBinding.inflate(inflater, container, false)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         binding.routeName.text = args.routeName
 
@@ -54,8 +52,6 @@ class RealTimeFragment : Fragment() {
         })
 
         realTimeViewModel.getEstimatedTimeOfArrival("Taipei", args.routeName)
-
-        return binding.root
     }
 }
 

@@ -7,7 +7,8 @@ object Dependencies {
     const val androidGradlePlugin = "com.android.tools.build:gradle:4.1.1"
 
     const val material = "com.google.android.material:material:${Versions.material}"
-    const val klock = "com.soywiz.korlibs.klock:klock-android:2.0.3"
+    const val klock = "com.soywiz.korlibs.klock:klock-android:${Versions.klock}"
+    const val leakCanary = "com.squareup.leakcanary:leakcanary-android:${Versions.leakCanary}"
 
     object Kotlin {
         const val gradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
@@ -25,6 +26,12 @@ object Dependencies {
         const val constraintlayout =
             "androidx.constraintlayout:constraintlayout:${Versions.AndroidX.constraintLayout}"
         const val viewpager2 = "androidx.viewpager2:viewpager2:${Versions.AndroidX.viewpager2}"
+        object Lifecycle {
+            const val liveDataKtx = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.AndroidX.lifecycle}"
+            const val viewModelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.AndroidX.lifecycle}"
+            const val viewModelSavedState = "androidx.lifecycle:lifecycle-viewmodel-savedstate:${Versions.AndroidX.lifecycle}"
+            const val commonJava8 = "androidx.lifecycle:lifecycle-common-java8:${Versions.AndroidX.lifecycle}"
+        }
         object Navigation {
             const val fragment = "androidx.navigation:navigation-fragment-ktx:${Versions.AndroidX.navigation}"
             const val ui = "androidx.navigation:navigation-ui-ktx:${Versions.AndroidX.navigation}"
@@ -79,6 +86,7 @@ fun Project.importAppDependencies() {
      * */
 
     val implementation by configurations
+    val debugImplementation by configurations
     val kapt by configurations
     val testImplementation by configurations
     val androidTestImplementation by configurations
@@ -91,6 +99,10 @@ fun Project.importAppDependencies() {
         implementation(Dependencies.material)
         implementation(Dependencies.AndroidX.constraintlayout)
         implementation(Dependencies.AndroidX.viewpager2)
+        implementation(Dependencies.AndroidX.Lifecycle.liveDataKtx)
+        implementation(Dependencies.AndroidX.Lifecycle.viewModelKtx)
+        implementation(Dependencies.AndroidX.Lifecycle.viewModelSavedState)
+        implementation(Dependencies.AndroidX.Lifecycle.commonJava8)
         implementation(Dependencies.AndroidX.Navigation.fragment)
         implementation(Dependencies.AndroidX.Navigation.ui)
         implementation(Dependencies.AndroidX.Hilt.lifecycleViewmodel)
@@ -112,6 +124,7 @@ fun Project.importAppDependencies() {
         kapt(Dependencies.Dagger.hiltAndroidCompiler)
 
         implementation(Dependencies.klock)
+        debugImplementation(Dependencies.leakCanary)
 
         testImplementation(Dependencies.Test.junit)
         androidTestImplementation(Dependencies.Test.extJunit)

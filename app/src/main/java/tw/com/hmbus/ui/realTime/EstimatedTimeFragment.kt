@@ -2,26 +2,25 @@ package tw.com.hmbus.ui.realTime
 
 import android.graphics.Rect
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import tw.com.hmbus.R
 import tw.com.hmbus.data.vo.Result
 import tw.com.hmbus.databinding.FragmentEstimatedTimeBinding
 import tw.com.hmbus.utility.dp
+import tw.com.hmbus.utility.viewBinding
 
-class EstimatedTimeFragment : Fragment() {
+class EstimatedTimeFragment : Fragment(R.layout.fragment_estimated_time) {
 
+    private val binding: FragmentEstimatedTimeBinding by viewBinding()
     private val realTimeViewModel: RealTimeViewModel by viewModels({ requireParentFragment() })
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        val binding = FragmentEstimatedTimeBinding.inflate(layoutInflater, container, false)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
         val direction = requireArguments().getInt("direction")
 
         val estimatedTimeAdapter = EstimatedTimeAdapter()
@@ -55,7 +54,5 @@ class EstimatedTimeFragment : Fragment() {
                 }
             }
         })
-
-        return binding.root
     }
 }
