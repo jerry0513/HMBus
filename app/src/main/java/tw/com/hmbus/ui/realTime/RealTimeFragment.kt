@@ -1,5 +1,6 @@
 package tw.com.hmbus.ui.realTime
 
+import android.animation.ObjectAnimator
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -8,10 +9,13 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.channels.ticker
+import kotlinx.coroutines.launch
 import tw.com.hmbus.R
 import tw.com.hmbus.data.vo.Result
 import tw.com.hmbus.databinding.FragmentRealTimeBinding
@@ -29,11 +33,24 @@ class RealTimeFragment : Fragment(R.layout.fragment_real_time) {
 
         binding.routeName.text = args.routeName
 
+        viewLifecycleOwner.lifecycleScope.launch {
+            var currentTime = 0
+            for (event in ticker(3000, 0)) {
+                val progress = currentTime % 30 / 30f * 100
+                if (progress == 0f)
+                    realTimeViewModel.getEstimatedTimeOfArrival("Taipei", args.routeName)
+
+                ObjectAnimator.ofInt(binding.progressBar, "progress", progress.toInt())
+                    .setDuration(300)
+                    .start()
+
+                currentTime += 3
+            }
+        }
+
         realTimeViewModel.estimatedTimeOfArrivalResult.observe(viewLifecycleOwner, { result ->
             when (result) {
-                is Result.Loading -> binding.progressBar.visibility = View.VISIBLE
                 is Result.Success -> {
-                    binding.progressBar.visibility = View.GONE
                     binding.estimatedTimeViewPager.adapter = EstimatedTimePagerAdapter(
                         result.data.keys.toList(),
                         childFragmentManager,
@@ -45,13 +62,10 @@ class RealTimeFragment : Fragment(R.layout.fragment_real_time) {
                     }.attach()
                 }
                 is Result.Error -> {
-                    binding.progressBar.visibility = View.GONE
                     Toast.makeText(context, result.throwable.message, Toast.LENGTH_SHORT).show()
                 }
             }
         })
-
-        realTimeViewModel.getEstimatedTimeOfArrival("Taipei", args.routeName)
     }
 }
 
