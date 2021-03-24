@@ -1,13 +1,13 @@
 object Versions {
-    const val kotlin = "1.4.10"
-    const val coroutines = "1.4.1"
+    const val kotlin = "1.4.31"
+    const val coroutines = "1.4.3"
     const val cmake = "3.10.2"
-    const val material = "1.2.1"
+    const val material = "1.3.0"
     const val okhttp = "4.9.0"
     const val retrofit = "2.9.0"
     const val moshi = "1.11.0"
-    const val dagger = "2.30.1-alpha"
-    const val klock = "2.0.3"
+    const val dagger = "2.35"
+    const val klock = "2.0.7"
     const val leakCanary = "2.6"
 
     object Android {
@@ -26,10 +26,9 @@ object Versions {
         const val coreKTX = "1.3.2"
         const val constraintLayout = "2.0.4"
         const val viewpager2 = "1.0.0"
-        const val lifecycle = "2.2.0"
-        const val navigation = "2.3.1"
-        const val hilt = "1.0.0-alpha02"
-        const val fragmentTest = "1.2.5"
+        const val lifecycle = "2.3.0"
+        const val navigation = "2.3.4"
+        const val hilt = "1.0.0-beta01"
     }
 
     object Test {

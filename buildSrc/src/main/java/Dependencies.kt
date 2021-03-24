@@ -4,7 +4,7 @@ import org.gradle.kotlin.dsl.getValue
 import org.gradle.kotlin.dsl.provideDelegate
 
 object Dependencies {
-    const val androidGradlePlugin = "com.android.tools.build:gradle:4.1.1"
+    const val androidGradlePlugin = "com.android.tools.build:gradle:4.1.3"
 
     const val material = "com.google.android.material:material:${Versions.material}"
     const val klock = "com.soywiz.korlibs.klock:klock-android:${Versions.klock}"
@@ -16,7 +16,8 @@ object Dependencies {
     }
 
     object Coroutines {
-        const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutines}"
+        const val android =
+            "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutines}"
         const val test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutines}"
     }
 
@@ -26,20 +27,24 @@ object Dependencies {
         const val constraintlayout =
             "androidx.constraintlayout:constraintlayout:${Versions.AndroidX.constraintLayout}"
         const val viewpager2 = "androidx.viewpager2:viewpager2:${Versions.AndroidX.viewpager2}"
+
         object Lifecycle {
-            const val liveDataKtx = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.AndroidX.lifecycle}"
-            const val viewModelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.AndroidX.lifecycle}"
-            const val viewModelSavedState = "androidx.lifecycle:lifecycle-viewmodel-savedstate:${Versions.AndroidX.lifecycle}"
-            const val commonJava8 = "androidx.lifecycle:lifecycle-common-java8:${Versions.AndroidX.lifecycle}"
+            const val liveDataKtx =
+                "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.AndroidX.lifecycle}"
+            const val viewModelKtx =
+                "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.AndroidX.lifecycle}"
+            const val viewModelSavedState =
+                "androidx.lifecycle:lifecycle-viewmodel-savedstate:${Versions.AndroidX.lifecycle}"
+            const val commonJava8 =
+                "androidx.lifecycle:lifecycle-common-java8:${Versions.AndroidX.lifecycle}"
         }
+
         object Navigation {
-            const val fragment = "androidx.navigation:navigation-fragment-ktx:${Versions.AndroidX.navigation}"
+            const val fragment =
+                "androidx.navigation:navigation-fragment-ktx:${Versions.AndroidX.navigation}"
             const val ui = "androidx.navigation:navigation-ui-ktx:${Versions.AndroidX.navigation}"
-            const val safeArgsGradlePlugin = "androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.AndroidX.navigation}"
-        }
-        object Hilt {
-            const val lifecycleViewmodel = "androidx.hilt:hilt-lifecycle-viewmodel:${Versions.AndroidX.hilt}"
-            const val compiler = "androidx.hilt:hilt-compiler:${Versions.AndroidX.hilt}"
+            const val safeArgsGradlePlugin =
+                "androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.AndroidX.navigation}"
         }
     }
 
@@ -69,7 +74,8 @@ object Dependencies {
     }
 
     object Dagger {
-        const val hiltAndroidGradlePlugin = "com.google.dagger:hilt-android-gradle-plugin:${Versions.dagger}"
+        const val hiltAndroidGradlePlugin =
+            "com.google.dagger:hilt-android-gradle-plugin:${Versions.dagger}"
         const val hiltAndroid = "com.google.dagger:hilt-android:${Versions.dagger}"
         const val hiltAndroidTest = "com.google.dagger:hilt-android-testing:${Versions.dagger}"
         const val hiltAndroidCompiler = "com.google.dagger:hilt-android-compiler:${Versions.dagger}"
@@ -105,8 +111,6 @@ fun Project.importAppDependencies() {
         implementation(Dependencies.AndroidX.Lifecycle.commonJava8)
         implementation(Dependencies.AndroidX.Navigation.fragment)
         implementation(Dependencies.AndroidX.Navigation.ui)
-        implementation(Dependencies.AndroidX.Hilt.lifecycleViewmodel)
-        kapt(Dependencies.AndroidX.Hilt.compiler)
 
         implementation(Dependencies.Coroutines.android)
         testImplementation(Dependencies.Coroutines.test)

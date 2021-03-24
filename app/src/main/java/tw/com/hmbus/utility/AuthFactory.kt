@@ -1,6 +1,7 @@
-package tw.com.hmbus
+package tw.com.hmbus.utility
 
 import android.util.Base64
+import tw.com.hmbus.Keys
 import java.security.SignatureException
 import java.text.SimpleDateFormat
 import java.util.*
