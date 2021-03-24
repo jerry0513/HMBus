@@ -1,17 +1,18 @@
 package tw.com.hmbus.ui.realTime
 
-import androidx.hilt.Assisted
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import tw.com.hmbus.data.remote.BusN1EstimateTime
 import tw.com.hmbus.data.vo.Result
 import tw.com.hmbus.domain.GetEstimatedTimeOfStopUseCase
+import javax.inject.Inject
 
-class RealTimeViewModel @ViewModelInject constructor(
-    @Assisted private val savedStateHandle: SavedStateHandle,
+@HiltViewModel
+class RealTimeViewModel @Inject constructor(
+    private val savedStateHandle: SavedStateHandle,
     private val getEstimatedTimeOfStopUseCase: GetEstimatedTimeOfStopUseCase
 ) : ViewModel() {
 

@@ -9,7 +9,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
-import tw.com.hmbus.AuthFactory
+import tw.com.hmbus.utility.AuthFactory
 import tw.com.hmbus.data.remote.PtxService
 import javax.inject.Qualifier
 import javax.inject.Singleton
