@@ -7,20 +7,22 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import tw.com.hmbus.data.remote.BusN1EstimateTime
 import tw.com.hmbus.data.vo.Result
-import tw.com.hmbus.domain.GetEstimatedTimeOfStopUseCase
+import tw.com.hmbus.domain.GetEstimatedTimeOfStopCase
 import javax.inject.Inject
 
 @HiltViewModel
 class RealTimeViewModel @Inject constructor(
     private val savedStateHandle: SavedStateHandle,
-    private val getEstimatedTimeOfStopUseCase: GetEstimatedTimeOfStopUseCase
+    private val getEstimatedTimeOfStopCase: GetEstimatedTimeOfStopCase
 ) : ViewModel() {
 
     val estimatedTimeOfArrivalResult = MutableLiveData<Result<Map<Int, List<BusN1EstimateTime>>>>()
 
     fun getEstimatedTimeOfArrival(city: String, routeName: String) = viewModelScope.launch {
         estimatedTimeOfArrivalResult.postValue(Result.Loading)
-        getEstimatedTimeOfStopUseCase(city, routeName)
+
+        val params = GetEstimatedTimeOfStopCase.Params(city, routeName)
+        getEstimatedTimeOfStopCase.executeAndGet(params)
             .catch { t ->
                 estimatedTimeOfArrivalResult.postValue(Result.Error(t))
             }
