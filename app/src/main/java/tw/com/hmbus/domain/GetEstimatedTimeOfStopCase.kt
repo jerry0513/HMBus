@@ -10,7 +10,7 @@ class GetEstimatedTimeOfStopCase @Inject constructor(
     private val ptxRepository: PtxRepository
 ) : UseCase<GetEstimatedTimeOfStopCase.Params, @JvmSuppressWildcards Map<Int, List<BusN1EstimateTime>>>() {
 
-    override suspend fun run(params: Params): Flow<Map<Int, List<BusN1EstimateTime>>> {
+    override fun run(params: Params): Flow<Map<Int, List<BusN1EstimateTime>>> {
         val filter = "RouteName/Zh_tw eq '${params.routeName}'"
 
         // 路線的站牌內容

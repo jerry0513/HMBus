@@ -9,7 +9,7 @@ class SearchRouteCase @Inject constructor(
     private val ptxRepository: PtxRepository
 ): UseCase<SearchRouteCase.Params, @JvmSuppressWildcards List<BusRoute>>() {
 
-    override suspend fun run(params: Params): Flow<List<BusRoute>> {
+    override fun run(params: Params): Flow<List<BusRoute>> {
         return ptxRepository.getBusRoute(params.city, params.routeName)
     }
 

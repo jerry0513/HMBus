@@ -10,26 +10,26 @@ class PtxRepository @Inject constructor(
     private val ptxService: PtxService
 ) : Repository() {
 
-    suspend fun getEstimatedTimeOfArrival(
+    fun getEstimatedTimeOfArrival(
         city: String,
         routeName: String,
         filter: String?
-    ): Flow<List<BusN1EstimateTime>> = requestApi {
+    ): Flow<List<BusN1EstimateTime>> = requestApi(
         ptxService.getEstimatedTimeOfArrival(city, routeName, filter)
-    }
+    )
 
-    suspend fun getBusRoute(
+    fun getBusRoute(
         city: String,
         routeName: String
-    ): Flow<List<BusRoute>> = requestApi {
+    ): Flow<List<BusRoute>> = requestApi(
         ptxService.getRoute(city, routeName)
-    }
+    )
 
-    suspend fun getStopOfRoute(
+    fun getStopOfRoute(
         city: String,
         routeName: String,
         filter: String?
-    ) = requestApi {
+    ) = requestApi(
         ptxService.getStopOfRoute(city, routeName, filter)
-    }
+    )
 }
