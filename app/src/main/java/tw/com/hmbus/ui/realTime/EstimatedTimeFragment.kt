@@ -3,17 +3,18 @@ package tw.com.hmbus.ui.realTime
 import android.graphics.Rect
 import android.os.Bundle
 import android.view.View
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import tw.com.hmbus.R
 import tw.com.hmbus.data.vo.Result
 import tw.com.hmbus.databinding.FragmentEstimatedTimeBinding
+import tw.com.hmbus.ui.BaseFragment
 import tw.com.hmbus.utility.dp
+import tw.com.hmbus.utility.observeData
 import tw.com.hmbus.utility.viewBinding
 
-class EstimatedTimeFragment : Fragment(R.layout.fragment_estimated_time) {
+class EstimatedTimeFragment : BaseFragment(R.layout.fragment_estimated_time) {
 
     private val binding: FragmentEstimatedTimeBinding by viewBinding()
     private val realTimeViewModel: RealTimeViewModel by viewModels({ requireParentFragment() })
@@ -45,7 +46,7 @@ class EstimatedTimeFragment : Fragment(R.layout.fragment_estimated_time) {
             })
         }
 
-        realTimeViewModel.estimatedTimeOfArrivalResult.observe(viewLifecycleOwner, { result ->
+        realTimeViewModel.estimatedTimeOfArrivalResult.observeData(this) { result ->
             when (result) {
                 is Result.Success -> {
                     estimatedTimeAdapter.data = result.data.getValue(direction)
@@ -53,6 +54,6 @@ class EstimatedTimeFragment : Fragment(R.layout.fragment_estimated_time) {
                 else -> {
                 }
             }
-        })
+        }
     }
 }

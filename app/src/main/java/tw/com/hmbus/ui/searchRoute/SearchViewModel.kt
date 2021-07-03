@@ -9,20 +9,22 @@ import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import tw.com.hmbus.data.vo.Result
 import tw.com.hmbus.data.remote.BusRoute
-import tw.com.hmbus.domain.SearchRouteUseCase
+import tw.com.hmbus.domain.SearchRouteCase
 import javax.inject.Inject
 
 @HiltViewModel
 class SearchViewModel @Inject constructor(
     private val savedStateHandle: SavedStateHandle,
-    private val searchRouteUseCase: SearchRouteUseCase
+    private val searchRouteCase: SearchRouteCase
 ) : ViewModel() {
 
     val busRouteResult = MutableLiveData<Result<List<BusRoute>>>()
 
     fun searchBusRoute(routeName: String) = viewModelScope.launch {
         busRouteResult.postValue(Result.Loading)
-        searchRouteUseCase("Taipei", routeName)
+
+        val params = SearchRouteCase.Params("Taipei", routeName)
+        searchRouteCase.executeAndGet(params)
             .catch { t ->
                 busRouteResult.postValue(Result.Error(t))
             }
