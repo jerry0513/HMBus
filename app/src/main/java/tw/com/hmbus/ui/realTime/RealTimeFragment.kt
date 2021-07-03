@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.tabs.TabLayoutMediator
@@ -19,10 +18,12 @@ import kotlinx.coroutines.launch
 import tw.com.hmbus.R
 import tw.com.hmbus.data.vo.Result
 import tw.com.hmbus.databinding.FragmentRealTimeBinding
+import tw.com.hmbus.ui.BaseFragment
+import tw.com.hmbus.utility.observeData
 import tw.com.hmbus.utility.viewBinding
 
 @AndroidEntryPoint
-class RealTimeFragment : Fragment(R.layout.fragment_real_time) {
+class RealTimeFragment : BaseFragment(R.layout.fragment_real_time) {
 
     private val args: RealTimeFragmentArgs by navArgs()
     private val binding: FragmentRealTimeBinding by viewBinding()
@@ -33,7 +34,7 @@ class RealTimeFragment : Fragment(R.layout.fragment_real_time) {
 
         binding.routeName.text = args.routeName
 
-        viewLifecycleOwner.lifecycleScope.launch {
+        fragmentScope.launch {
             var currentTime = 0
             for (event in ticker(3000, 0)) {
                 val progress = currentTime % 30 / 30f * 100
@@ -48,15 +49,18 @@ class RealTimeFragment : Fragment(R.layout.fragment_real_time) {
             }
         }
 
-        realTimeViewModel.estimatedTimeOfArrivalResult.observe(viewLifecycleOwner, { result ->
+        realTimeViewModel.estimatedTimeOfArrivalResult.observeData(this) { result ->
             when (result) {
                 is Result.Success -> {
                     binding.estimatedTimeViewPager.adapter = EstimatedTimePagerAdapter(
                         result.data.keys.toList(),
                         childFragmentManager,
-                        viewLifecycleOwner.lifecycle
+                        viewLifecycle
                     )
-                    TabLayoutMediator(binding.directionTab, binding.estimatedTimeViewPager) { tab, position ->
+                    TabLayoutMediator(
+                        binding.directionTab,
+                        binding.estimatedTimeViewPager
+                    ) { tab, position ->
                         val directionStops = result.data.values.toList()
                         tab.text = "往${directionStops[position].last().StopName.Zh_tw}"
                     }.attach()
@@ -65,7 +69,7 @@ class RealTimeFragment : Fragment(R.layout.fragment_real_time) {
                     Toast.makeText(context, result.throwable.message, Toast.LENGTH_SHORT).show()
                 }
             }
-        })
+        }
     }
 }
 
