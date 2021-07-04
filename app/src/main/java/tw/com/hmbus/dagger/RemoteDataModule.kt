@@ -29,11 +29,10 @@ object RemoteDataModule {
     @Singleton
     fun provideRequestInterceptor(): Interceptor = Interceptor { chain ->
         val signature = AuthFactory.createPtxAuth()
-        val request = chain.request()
 
+        val request = chain.request()
         val urlBuilder = request.url.newBuilder()
             .addQueryParameter("\$format", "JSON")
-
         val requestBuilder = request.newBuilder()
             .url(urlBuilder.build())
             .addHeader("Authorization", signature.auth)

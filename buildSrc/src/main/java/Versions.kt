@@ -1,41 +1,34 @@
 object Versions {
-    const val kotlin = "1.4.31"
-    const val coroutines = "1.4.3"
+    const val compileSdk = 30
+    const val minSdk = 23
+    const val androidGradlePlugin = "4.2.2"
+    const val androidDesugarJdkLibs = "1.1.5"
+
+    const val kotlin = "1.5.10"
+    const val coroutines = "1.5.0"
     const val cmake = "3.10.2"
     const val material = "1.3.0"
     const val okhttp = "4.9.0"
     const val retrofit = "2.9.0"
-    const val moshi = "1.11.0"
-    const val dagger = "2.35"
-    const val klock = "2.0.7"
-    const val leakCanary = "2.6"
-
-    object Android {
-        const val sdk = 30
-        const val minSdk = 23
-    }
-
-    object App {
-        const val id = "tw.com.hmbus"
-        const val versionCode = 1
-        const val versionName = "1.0"
-    }
+    const val moshi = "1.12.0"
+    const val dagger = "2.37"
+    const val leakCanary = "2.7"
 
     object AndroidX {
-        const val appCompat = "1.2.0"
-        const val coreKTX = "1.3.2"
+        const val appCompat = "1.3.0"
+        const val coreKTX = "1.5.0"
         const val constraintLayout = "2.0.4"
         const val viewpager2 = "1.0.0"
-        const val lifecycle = "2.3.0"
-        const val navigation = "2.3.4"
-        const val hilt = "1.0.0-beta01"
+        const val lifecycle = "2.3.1"
+        const val navigation = "2.3.5"
     }
 
     object Test {
-        const val junit = "4.13.1"
+        const val junit = "4.13.2"
+        const val mockk = "1.10.6"
+        const val core = "2.1.0"
+        const val coreKtx = "1.3.0"
         const val extJunit = "1.1.2"
         const val espresso = "3.3.0"
-        const val runner = "1.3.0"
-        const val rules = "1.3.0"
     }
 }

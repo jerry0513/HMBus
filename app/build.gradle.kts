@@ -7,14 +7,14 @@ plugins {
 }
 
 android {
-    compileSdkVersion(Versions.Android.sdk)
+    compileSdkVersion(Versions.compileSdk)
 
     defaultConfig {
-        applicationId = Versions.App.id
-        minSdkVersion(Versions.Android.minSdk)
-        targetSdkVersion(Versions.Android.sdk)
-        versionCode = Versions.App.versionCode
-        versionName = Versions.App.versionName
+        applicationId = "tw.com.hmbus"
+        minSdkVersion(Versions.minSdk)
+        targetSdkVersion(Versions.compileSdk)
+        versionCode = 1
+        versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
@@ -31,7 +31,8 @@ android {
 
     buildTypes {
         getByName("release") {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
+            isShrinkResources = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -40,12 +41,13 @@ android {
     }
 
     compileOptions {
+        isCoreLibraryDesugaringEnabled = true
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
 
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8.toString()
+        jvmTarget = "1.8"
     }
 
     externalNativeBuild {
@@ -56,4 +58,48 @@ android {
     }
 }
 
-importAppDependencies()
+kapt {
+    correctErrorTypes = true
+}
+
+dependencies {
+    implementation(Dependencies.Kotlin.stdlib)
+    coreLibraryDesugaring(Dependencies.androidDesugarJdkLibs)
+
+    implementation(Dependencies.AndroidX.coreKTX)
+    implementation(Dependencies.AndroidX.appcompat)
+    implementation(Dependencies.material)
+    implementation(Dependencies.AndroidX.constraintlayout)
+    implementation(Dependencies.AndroidX.viewpager2)
+    implementation(Dependencies.AndroidX.Lifecycle.liveDataKtx)
+    implementation(Dependencies.AndroidX.Lifecycle.viewModelKtx)
+    implementation(Dependencies.AndroidX.Lifecycle.viewModelSavedState)
+    implementation(Dependencies.AndroidX.Lifecycle.commonJava8)
+    implementation(Dependencies.AndroidX.Navigation.fragment)
+    implementation(Dependencies.AndroidX.Navigation.ui)
+
+    implementation(Dependencies.Coroutines.android)
+    testImplementation(Dependencies.Coroutines.test)
+
+    implementation(Dependencies.OkHttp3.okhttp)
+    implementation(Dependencies.OkHttp3.loggingInterceptor)
+
+    implementation(Dependencies.Retrofit2.retrofit)
+    implementation(Dependencies.Retrofit2.converterMoshi)
+
+    implementation(Dependencies.Moshi.moshi)
+    kapt(Dependencies.Moshi.kotlinCodegen)
+
+    implementation(Dependencies.Dagger.hiltAndroid)
+    kapt(Dependencies.Dagger.hiltAndroidCompiler)
+
+    debugImplementation(Dependencies.leakCanary)
+
+    testImplementation(Dependencies.Test.junit)
+    testImplementation(Dependencies.Test.mockk)
+    testImplementation(Dependencies.Test.core)
+    testImplementation(Dependencies.Test.coreKtx)
+    testImplementation(Dependencies.Test.extJunit)
+    androidTestImplementation(Dependencies.Test.extJunit)
+    androidTestImplementation(Dependencies.Test.espresso)
+}

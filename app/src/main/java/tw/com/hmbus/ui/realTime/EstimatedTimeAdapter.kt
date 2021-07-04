@@ -3,9 +3,11 @@ package tw.com.hmbus.ui.realTime
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.soywiz.klock.*
 import tw.com.hmbus.data.remote.BusN1EstimateTime
 import tw.com.hmbus.databinding.EstimatedTimeItemBinding
+import java.time.ZoneId
+import java.time.ZonedDateTime
+import java.time.format.DateTimeFormatter
 
 class EstimatedTimeAdapter : RecyclerView.Adapter<EstimatedTimeViewHolder>() {
 
@@ -37,12 +39,13 @@ class EstimatedTimeViewHolder(private val binding: EstimatedTimeItemBinding) :
                 else -> throw IllegalStateException("unknown stop status")
             }
         } else {
-            val remainingMinute = Math.ceil(item.EstimateTime / 60.0).toInt()
+            val remainingMinute = Math.ceil(item.EstimateTime / 60.0).toLong()
             when {
                 remainingMinute >= 60 -> {
-                    val now = DateTime.now().utc.addOffset(8.hours)
-                    val estimatedTime = now + remainingMinute.minutes
-                    estimatedTime.format("hh:mm")
+                    val now = ZonedDateTime.now(ZoneId.of("UTC+8"))
+                    val estimatedTime = now.plusMinutes(remainingMinute)
+                    val dateTimeformat = DateTimeFormatter.ofPattern("hh:mm")
+                    estimatedTime.format(dateTimeformat)
                 }
                 remainingMinute <= 2 -> "即將到站"
                 else -> "${remainingMinute}分"
