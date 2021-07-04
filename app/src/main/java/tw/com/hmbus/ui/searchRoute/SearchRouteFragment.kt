@@ -8,8 +8,6 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
 import tw.com.hmbus.R
 import tw.com.hmbus.data.vo.Result
 import tw.com.hmbus.databinding.FragmentSearchRouteBinding
@@ -23,18 +21,14 @@ import tw.com.hmbus.widget.DividerItemDecoration
 class SearchRouteFragment : BaseFragment(R.layout.fragment_search_route) {
 
     private val binding: FragmentSearchRouteBinding by viewBinding()
-    private val searchViewModel: SearchViewModel by viewModels()
+    private val searchRouteViewModel: SearchRouteViewModel by viewModels()
 
-    private var searchJob: Job? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         binding.searchEt.addTextChangedListener {
-            searchJob?.cancel()
-            searchJob = fragmentScope.launch {
-                searchViewModel.searchBusRoute(binding.searchEt.text.toString())
-            }
+            searchRouteViewModel.searchBusRoute(it.toString())
         }
 
         with(binding.busRouteList) {
@@ -49,7 +43,7 @@ class SearchRouteFragment : BaseFragment(R.layout.fragment_search_route) {
             addItemDecoration(DividerItemDecoration())
         }
 
-        searchViewModel.busRouteResult.observeData(this) { result ->
+        searchRouteViewModel.busRouteResult.observeData(this) { result ->
             when (result) {
                 is Result.Loading -> binding.progressBar.visibility = View.VISIBLE
                 is Result.Success -> {
