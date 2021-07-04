@@ -96,6 +96,10 @@ dependencies {
     debugImplementation(Dependencies.leakCanary)
 
     testImplementation(Dependencies.Test.junit)
+    testImplementation(Dependencies.Test.mockk)
+    testImplementation(Dependencies.Test.core)
+    testImplementation(Dependencies.Test.coreKtx)
+    testImplementation(Dependencies.Test.extJunit)
     androidTestImplementation(Dependencies.Test.extJunit)
     androidTestImplementation(Dependencies.Test.espresso)
 }
