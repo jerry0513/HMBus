@@ -25,6 +25,9 @@ object Versions {
 
     object Test {
         const val junit = "4.13.2"
+        const val mockk = "1.10.6"
+        const val core = "2.1.0"
+        const val coreKtx = "1.3.0"
         const val extJunit = "1.1.2"
         const val espresso = "3.3.0"
     }
