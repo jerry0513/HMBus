@@ -16,8 +16,8 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.channels.ticker
 import kotlinx.coroutines.launch
 import tw.com.hmbus.R
-import tw.com.hmbus.data.vo.Result
 import tw.com.hmbus.databinding.FragmentRealTimeBinding
+import tw.com.hmbus.model.Result
 import tw.com.hmbus.ui.BaseFragment
 import tw.com.hmbus.utility.observeData
 import tw.com.hmbus.utility.viewBinding

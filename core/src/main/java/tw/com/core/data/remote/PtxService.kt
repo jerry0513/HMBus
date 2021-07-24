@@ -1,9 +1,12 @@
-package tw.com.hmbus.data.remote
+package tw.com.core.data.remote
 
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
+import tw.com.core.data.model.BusN1EstimateTime
+import tw.com.core.data.model.BusRoute
+import tw.com.core.data.model.BusStopOfRoute
 
 interface PtxService {
 

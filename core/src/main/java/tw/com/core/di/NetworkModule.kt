@@ -1,4 +1,4 @@
-package tw.com.hmbus.dagger
+package tw.com.core.di
 
 import dagger.Module
 import dagger.Provides
@@ -9,14 +9,14 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
-import tw.com.hmbus.utility.AuthFactory
-import tw.com.hmbus.data.remote.PtxService
+import tw.com.core.data.remote.PtxService
+import tw.com.core.utility.AuthFactory
 import javax.inject.Qualifier
 import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object RemoteDataModule {
+object NetworkModule {
 
     @LoggingInterceptor
     @Provides
@@ -48,7 +48,7 @@ object RemoteDataModule {
         @RequestInterceptor requestInterceptor: Interceptor
     ): OkHttpClient =
         OkHttpClient().newBuilder()
-            .authenticator { route, response ->
+            .authenticator { _, response ->
                 response.request
             }
             .addInterceptor(loggingInterceptor)

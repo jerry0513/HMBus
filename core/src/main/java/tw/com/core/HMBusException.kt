@@ -1,4 +1,4 @@
-package tw.com.hmbus.data
+package tw.com.core
 
 import java.lang.Exception
 

@@ -8,8 +8,8 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
-import tw.com.hmbus.data.remote.BusRoute
-import tw.com.hmbus.data.vo.Result
+import tw.com.core.data.model.BusRoute
+import tw.com.hmbus.model.Result
 import tw.com.hmbus.domain.SearchRouteCase
 import javax.inject.Inject
 
