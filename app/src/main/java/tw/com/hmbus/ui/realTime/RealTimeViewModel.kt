@@ -5,8 +5,8 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import tw.com.hmbus.data.remote.BusN1EstimateTime
-import tw.com.hmbus.data.vo.Result
+import tw.com.core.data.model.BusN1EstimateTime
+import tw.com.hmbus.model.Result
 import tw.com.hmbus.domain.GetEstimatedTimeOfStopCase
 import javax.inject.Inject
 

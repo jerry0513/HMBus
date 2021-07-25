@@ -1,4 +1,4 @@
-package tw.com.hmbus.data.remote
+package tw.com.core.data.model
 
 import com.squareup.moshi.JsonClass
 

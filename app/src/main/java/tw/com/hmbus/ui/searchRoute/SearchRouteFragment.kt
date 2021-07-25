@@ -9,7 +9,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import tw.com.hmbus.R
-import tw.com.hmbus.data.vo.Result
+import tw.com.hmbus.model.Result
 import tw.com.hmbus.databinding.FragmentSearchRouteBinding
 import tw.com.hmbus.ui.BaseFragment
 import tw.com.hmbus.ui.home.BusRouteAdapter
@@ -22,7 +22,6 @@ class SearchRouteFragment : BaseFragment(R.layout.fragment_search_route) {
 
     private val binding: FragmentSearchRouteBinding by viewBinding()
     private val searchRouteViewModel: SearchRouteViewModel by viewModels()
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

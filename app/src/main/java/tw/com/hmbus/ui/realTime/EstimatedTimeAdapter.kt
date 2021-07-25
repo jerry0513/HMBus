@@ -3,7 +3,7 @@ package tw.com.hmbus.ui.realTime
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import tw.com.hmbus.data.remote.BusN1EstimateTime
+import tw.com.core.data.model.BusN1EstimateTime
 import tw.com.hmbus.databinding.EstimatedTimeItemBinding
 import java.time.ZoneId
 import java.time.ZonedDateTime
@@ -39,7 +39,7 @@ class EstimatedTimeViewHolder(private val binding: EstimatedTimeItemBinding) :
                 else -> throw IllegalStateException("unknown stop status")
             }
         } else {
-            val remainingMinute = Math.ceil(item.EstimateTime / 60.0).toLong()
+            val remainingMinute = Math.ceil(item.EstimateTime!! / 60.0).toLong()
             when {
                 remainingMinute >= 60 -> {
                     val now = ZonedDateTime.now(ZoneId.of("UTC+8"))

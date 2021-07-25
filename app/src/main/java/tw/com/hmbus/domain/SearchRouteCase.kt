@@ -1,8 +1,8 @@
 package tw.com.hmbus.domain
 
 import kotlinx.coroutines.flow.Flow
-import tw.com.hmbus.data.PtxRepository
-import tw.com.hmbus.data.remote.BusRoute
+import tw.com.core.data.PtxRepository
+import tw.com.core.data.model.BusRoute
 import javax.inject.Inject
 
 class SearchRouteCase @Inject constructor(

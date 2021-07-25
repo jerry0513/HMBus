@@ -2,8 +2,8 @@ package tw.com.hmbus.domain
 
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
-import tw.com.hmbus.data.PtxRepository
-import tw.com.hmbus.data.remote.BusN1EstimateTime
+import tw.com.core.data.PtxRepository
+import tw.com.core.data.model.BusN1EstimateTime
 import javax.inject.Inject
 
 class GetEstimatedTimeOfStopCase @Inject constructor(

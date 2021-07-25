@@ -6,14 +6,16 @@ import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import dagger.hilt.android.AndroidEntryPoint
 import tw.com.hmbus.R
-import tw.com.hmbus.data.vo.Result
 import tw.com.hmbus.databinding.FragmentEstimatedTimeBinding
+import tw.com.hmbus.model.Result
 import tw.com.hmbus.ui.BaseFragment
 import tw.com.hmbus.utility.dp
 import tw.com.hmbus.utility.observeData
 import tw.com.hmbus.utility.viewBinding
 
+@AndroidEntryPoint
 class EstimatedTimeFragment : BaseFragment(R.layout.fragment_estimated_time) {
 
     private val binding: FragmentEstimatedTimeBinding by viewBinding()

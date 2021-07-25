@@ -1,9 +1,10 @@
-package tw.com.hmbus.data
+package tw.com.core.data
 
 import kotlinx.coroutines.flow.Flow
-import tw.com.hmbus.data.remote.BusN1EstimateTime
-import tw.com.hmbus.data.remote.BusRoute
-import tw.com.hmbus.data.remote.PtxService
+import tw.com.core.data.model.BusN1EstimateTime
+import tw.com.core.data.model.BusRoute
+import tw.com.core.data.remote.PtxService
+import tw.com.core.data.model.BusStopOfRoute
 import javax.inject.Inject
 
 class PtxRepository @Inject constructor(
@@ -29,7 +30,7 @@ class PtxRepository @Inject constructor(
         city: String,
         routeName: String,
         filter: String?
-    ) = requestApi(
+    ): Flow<List<BusStopOfRoute>> = requestApi(
         ptxService.getStopOfRoute(city, routeName, filter)
     )
 }

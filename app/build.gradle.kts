@@ -17,12 +17,6 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-
-        externalNativeBuild {
-            cmake {
-                cppFlags("")
-            }
-        }
     }
 
     buildFeatures {
@@ -49,13 +43,6 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
-
-    externalNativeBuild {
-        cmake {
-            path("src/main/cpp/CMakeLists.txt")
-            version = Versions.cmake
-        }
-    }
 }
 
 kapt {
@@ -63,6 +50,8 @@ kapt {
 }
 
 dependencies {
+    implementation(project(":core"))
+
     implementation(Dependencies.Kotlin.stdlib)
     coreLibraryDesugaring(Dependencies.androidDesugarJdkLibs)
 
@@ -80,15 +69,6 @@ dependencies {
 
     implementation(Dependencies.Coroutines.android)
     testImplementation(Dependencies.Coroutines.test)
-
-    implementation(Dependencies.OkHttp3.okhttp)
-    implementation(Dependencies.OkHttp3.loggingInterceptor)
-
-    implementation(Dependencies.Retrofit2.retrofit)
-    implementation(Dependencies.Retrofit2.converterMoshi)
-
-    implementation(Dependencies.Moshi.moshi)
-    kapt(Dependencies.Moshi.kotlinCodegen)
 
     implementation(Dependencies.Dagger.hiltAndroid)
     kapt(Dependencies.Dagger.hiltAndroidCompiler)

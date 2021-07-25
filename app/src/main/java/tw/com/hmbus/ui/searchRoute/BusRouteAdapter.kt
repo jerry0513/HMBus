@@ -3,7 +3,7 @@ package tw.com.hmbus.ui.home
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import tw.com.hmbus.data.remote.BusRoute
+import tw.com.core.data.model.BusRoute
 import tw.com.hmbus.databinding.BusRouteItemBinding
 
 class BusRouteAdapter : RecyclerView.Adapter<BusRouteViewHolder>() {

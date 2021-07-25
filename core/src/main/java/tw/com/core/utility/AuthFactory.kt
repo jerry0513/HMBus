@@ -1,7 +1,7 @@
-package tw.com.hmbus.utility
+package tw.com.core.utility
 
 import android.util.Base64
-import tw.com.hmbus.Keys
+import tw.com.core.Keys
 import java.time.ZoneOffset
 import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
