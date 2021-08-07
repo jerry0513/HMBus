@@ -6,13 +6,11 @@ plugins {
 }
 
 android {
-    compileSdkVersion(Versions.compileSdk)
+    compileSdk = Versions.compileSdk
 
     defaultConfig {
-        minSdkVersion(Versions.minSdk)
-        targetSdkVersion(Versions.compileSdk)
-        versionCode = 1
-        versionName = "1.0"
+        minSdk = Versions.minSdk
+        targetSdk = Versions.compileSdk
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -63,9 +61,9 @@ dependencies {
     testImplementation(Dependencies.Coroutines.test)
 
     implementation(Dependencies.OkHttp3.okhttp)
-    api(Dependencies.OkHttp3.loggingInterceptor)
+    compileOnly(Dependencies.OkHttp3.loggingInterceptor)
 
-    api(Dependencies.Retrofit2.retrofit)
+    compileOnly(Dependencies.Retrofit2.retrofit)
     implementation(Dependencies.Retrofit2.converterMoshi)
 
     implementation(Dependencies.Moshi.moshi)

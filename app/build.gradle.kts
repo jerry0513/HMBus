@@ -7,12 +7,12 @@ plugins {
 }
 
 android {
-    compileSdkVersion(Versions.compileSdk)
+    compileSdk = Versions.compileSdk
 
     defaultConfig {
         applicationId = "tw.com.hmbus"
-        minSdkVersion(Versions.minSdk)
-        targetSdkVersion(Versions.compileSdk)
+        minSdk = Versions.minSdk
+        targetSdk = Versions.compileSdk
         versionCode = 1
         versionName = "1.0"
 
@@ -82,4 +82,7 @@ dependencies {
     testImplementation(Dependencies.Test.extJunit)
     androidTestImplementation(Dependencies.Test.extJunit)
     androidTestImplementation(Dependencies.Test.espresso)
+
+    implementation(Dependencies.OkHttp3.loggingInterceptor)
+    implementation(Dependencies.Retrofit2.retrofit)
 }

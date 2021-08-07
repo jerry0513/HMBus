@@ -68,6 +68,7 @@ class RealTimeFragment : BaseFragment(R.layout.fragment_real_time) {
                 is Result.Error -> {
                     Toast.makeText(context, result.throwable.message, Toast.LENGTH_SHORT).show()
                 }
+                else -> {}
             }
         }
     }
